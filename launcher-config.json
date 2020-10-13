@@ -16,6 +16,7 @@
       "git branch"
     ],
     "sync": [
+      "git fetch -p origin",
       "git switch main",
       "git pull --rebase origin main",
       "git switch develop",
