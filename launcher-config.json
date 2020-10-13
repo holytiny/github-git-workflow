@@ -72,6 +72,11 @@
       "git switch hotfix/$name",
       "git branch"
     ],
+    "dh:$name": "delete-hotfix:$name",
+    "delete-hotfix:$name": [
+      "git switch main",
+      "git branch -d hotfix/$name"
+    ],
     "fh:$name": "finish-hotfix:$name",
     "finish-hotfix:$name": [
       "git switch hotfix/$name",
