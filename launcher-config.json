@@ -30,7 +30,7 @@
       "git switch feature/$name",
       "git branch"
     ],
-    "dd:$name": "delete-feature:$name",
+    "df:$name": "delete-feature:$name",
     "delete-feature:$name": [
       "sync",
       "git branch -d feature/$name"
@@ -75,12 +75,10 @@
     "fh:$name": "finish-hotfix:$name",
     "finish-hotfix:$name": [
       "git switch hotfix/$name",
-      "git add -A",
-      "git cz --allow-empty",
       "git rebase main",
       "mr-hotfix:$name"
     ],
-    "mr-hotfix$name": [
+    "mr-hotfix:$name": [
       "git fetch -p origin",
       "git switch main",
       "git pull --rebase origin main",
