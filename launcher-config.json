@@ -131,20 +131,26 @@
       "git rebase main",
       "git push -f origin $(git branch --show-current)"
     ],
-    "major": [
-      "version:major"
-    ],
-    "minor": [
-      "version:minor"
-    ],
-    "patch": [
-      "version:patch"
-    ],
+    "premajor": "version:premajor",
+    "major": "version:major",
+    "preminor": "version:preminor",
+    "minor": "version:minor",
+    "prepatch": "version:prepatch",
+    "patch": "version:patch",
     "version:$revision": [
       "git fetch -p origin",
       "git switch main",
       "git pull --rebase origin main",
       "npm version $revision",
+      "git push --follow-tags"
+    ],
+    "alpha": "prerelease:alpha",
+    "beta": "prerelease:beta",
+    "prerelease:$preid": [
+      "git fetch -p origin",
+      "git switch main",
+      "git pull --rebase origin main",
+      "npm version prerelease --preid=$preid",
       "git push --follow-tags"
     ]
   }
