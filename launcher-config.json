@@ -1,0 +1,147 @@
+{
+  "scripts": {
+    "serve:$config": "echo Serve $config command.",
+    "build:$config": "echo Build $config command.",
+    "cz": [
+      "git add -A",
+      "git cz"
+    ],
+    "branch:$name": [
+      "git pull --rebase origin master",
+      "git checkout -b $name",
+      "git branch"
+    ],
+    "sync": [
+      "git switch master",
+      "git pull --rebase origin master",
+      "git switch develop",
+      "git rebase master"
+    ],
+    "develop": [
+      "git switch master",
+      "git pull --rebase origin master",
+      "git checkout -b develop",
+      "git branch"
+    ],
+    "feature:$name": [
+      "git switch master",
+      "git pull --rebase origin master",
+      "git switch develop",
+      "git rebase master",
+      "git branch feature/$name develop",
+      "git switch feature/$name",
+      "git branch"
+    ],
+    "ff:$name": "finish-feature:$name",
+    "finish-feature:$name": [
+      "git switch feature/$name",
+      "git add -A",
+      "git cz --allow-empty",
+      "git rebase develop",
+      "git switch develop",
+      "git merge feature/$name",
+      "mr-featrue$name"
+    ],
+    "mr-featrue$name": [
+      "git fetch -p origin",
+      "git switch master",
+      "git pull --rebase origin master",
+      "git switch develop",
+      "git rebase master",
+      "git switch feature/$name",
+      "git rebase develop",
+      "git push -o merge_request.create -o merge_request.remove_source_branch origin $(git branch --show-current)",
+      "git switch develop",
+      "git branch"
+    ],
+    "mr": [
+      "git fetch -p origin",
+      "git switch develop",
+      "git add -A",
+      "git cz --allow-empty",
+      "git switch master",
+      "git pull --rebase origin master",
+      "git switch develop",
+      "git rebase master",
+      "git push -o merge_request.create -o merge_request.remove_source_branch origin $(git branch --show-current)"
+    ],
+    "hotfix:$name": [
+      "git switch master",
+      "git pull --rebase origin master",
+      "git branch hotfix/$name master",
+      "git switch hotfix/$name",
+      "git branch"
+    ],
+    "fh:$name": "finish-hotfix:$name",
+    "finish-hotfix:$name": [
+      "git switch hotfix/$name",
+      "git add -A",
+      "git cz --allow-empty",
+      "git rebase master",
+      "mr-hotfix:$name"
+    ],
+    "mr-hotfix$name": [
+      "git fetch -p origin",
+      "git switch master",
+      "git pull --rebase origin master",
+      "git switch hotfix/$name",
+      "git rebase master",
+      "git push -o merge_request.create -o merge_request.remove_source_branch origin $(git branch --show-current)",
+      "git switch master",
+      "git branch"
+    ],
+    "verify": [
+      "git add -A",
+      "git cz --allow-empty",
+      "git switch master",
+      "git pull --rebase origin master",
+      "git switch develop",
+      "git rebase master",
+      "git push -f origin $(git branch --show-current)"
+    ],
+    "vf:$name": [
+      "verify-feature$name"
+    ],
+    "verify-feature$name": [
+      "git add -A",
+      "git cz --allow-empty",
+      "git switch master",
+      "git pull --rebase origin master",
+      "git switch develop",
+      "git rebase master",
+      "git switch feature/$name",
+      "git rebase develop",
+      "git push -f origin $(git branch --show-current)"
+    ],
+    "vh:$name": [
+      "verify-hotfix:$name"
+    ],
+    "verify-hotfix": [
+      "git add -A",
+      "git cz --allow-empty",
+      "git switch master",
+      "git pull --rebase origin master",
+      "git switch hotfix/$name",
+      "git rebase master",
+      "git push -f origin $(git branch --show-current)"
+    ],
+    "major": [
+      "version:major"
+    ],
+    "minor": [
+      "version:minor"
+    ],
+    "patch": [
+      "version:patch"
+    ],
+    "version:$revision": [
+      "git fetch -p origin",
+      "git switch master",
+      "git pull --rebase origin master",
+      "git switch develop",
+      "git rebase master",
+      "npm version $revision",
+      "git push -f -o merge_request.create -o merge_request.remove_source_branch origin $(git branch --show-current) --follow-tags"
+    ]
+  }
+}
