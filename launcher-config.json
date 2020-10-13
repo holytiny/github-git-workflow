@@ -30,6 +30,11 @@
       "git switch feature/$name",
       "git branch"
     ],
+    "dd:$name": "delete-feature:$name",
+    "delete-feature:$name": [
+      "sync",
+      "git branch -d feature/$name"
+    ],
     "ff:$name": "finish-feature:$name",
     "finish-feature:$name": [
       "git switch feature/$name",
@@ -46,7 +51,7 @@
       "git rebase main",
       "git switch feature/$name",
       "git rebase develop",
-      "gh pr create -f --base main",      
+      "gh pr create -f --base main",
       "git branch"
     ],
     "mr": [
