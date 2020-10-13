@@ -33,14 +33,12 @@
     "ff:$name": "finish-feature:$name",
     "finish-feature:$name": [
       "git switch feature/$name",
-      "git add -A",
-      "git cz --allow-empty",
       "git rebase develop",
       "git switch develop",
       "git merge feature/$name",
-      "mr-featrue$name"
+      "mr-featrue:$name"
     ],
-    "mr-featrue$name": [
+    "mr-featrue:$name": [
       "git fetch -p origin",
       "git switch main",
       "git pull --rebase origin main",
@@ -48,7 +46,7 @@
       "git rebase main",
       "git switch feature/$name",
       "git rebase develop",
-      "gh pr create -f ",      
+      "gh pr create -f --base main",      
       "git branch"
     ],
     "mr": [
@@ -60,7 +58,7 @@
       "git pull --rebase origin main",
       "git switch develop",
       "git rebase main",
-      "git push -o merge_request.create -o merge_request.remove_source_branch origin $(git branch --show-current)"
+      "gh pr create -f --base main"
     ],
     "hotfix:$name": [
       "git switch main",
@@ -83,8 +81,7 @@
       "git pull --rebase origin main",
       "git switch hotfix/$name",
       "git rebase main",
-      "git push -o merge_request.create -o merge_request.remove_source_branch origin $(git branch --show-current)",
-      "git switch main",
+      "gh pr create -f --base main",
       "git branch"
     ],
     "verify": [
@@ -113,7 +110,7 @@
     "vh:$name": [
       "verify-hotfix:$name"
     ],
-    "verify-hotfix": [
+    "verify-hotfix:$name": [
       "git add -A",
       "git cz --allow-empty",
       "git switch main",
@@ -135,10 +132,8 @@
       "git fetch -p origin",
       "git switch main",
       "git pull --rebase origin main",
-      "git switch develop",
-      "git rebase main",
       "npm version $revision",
-      "git push -f -o merge_request.create -o merge_request.remove_source_branch origin $(git branch --show-current) --follow-tags"
+      "git push --follow-tags"
     ]
   }
 }
