@@ -1,7 +1,5 @@
 {
   "scripts": {
-    "serve:$config": "echo Serve $config command.",
-    "build:$config": "echo Build $config command.",
     "cz": [
       "git add -A",
       "git cz"
@@ -11,18 +9,18 @@
       "git checkout -b $name",
       "git branch"
     ],
-    "sync": [
-      "git switch master",
-      "git pull --rebase origin master",
-      "git switch develop",
-      "git rebase master"
-    ],
     "develop": [
       "git switch master",
       "git pull --rebase origin master",
       "git checkout -b develop",
       "git branch"
     ],
+    "sync": [
+      "git switch master",
+      "git pull --rebase origin master",
+      "git switch develop",
+      "git rebase master"
+    ],    
     "feature:$name": [
       "git switch master",
       "git pull --rebase origin master",
@@ -50,8 +48,7 @@
       "git rebase master",
       "git switch feature/$name",
       "git rebase develop",
-      "git push -o merge_request.create -o merge_request.remove_source_branch origin $(git branch --show-current)",
-      "git switch develop",
+      "gh pr create -f ",      
       "git branch"
     ],
     "mr": [
