@@ -9,62 +9,36 @@
       "git checkout -b $name",
       "git branch"
     ],
-    "develop": [
-      "git switch main",
-      "git pull --rebase origin main",
-      "git checkout -b develop",
-      "git branch"
-    ],
     "sync": [
       "git fetch -p origin",
       "git switch main",
-      "git pull --rebase origin main",
-      "git switch develop",
-      "git rebase main"
-    ],    
+      "git pull --rebase origin main"
+    ],
     "feature:$name": [
-      "git switch main",
-      "git pull --rebase origin main",
-      "git switch develop",
-      "git rebase main",
-      "git branch feature/$name develop",
+      "sync",
+      "git branch feature/$name main",
       "git switch feature/$name",
       "git branch"
     ],
     "df:$name": "delete-feature:$name",
     "delete-feature:$name": [
       "sync",
-      "git branch -d feature/$name"
+      "git branch -d feature/$name",
+      "git branch"
     ],
     "ff:$name": "finish-feature:$name",
     "finish-feature:$name": [
+      "sync",
       "git switch feature/$name",
-      "git rebase develop",
-      "git switch develop",
-      "git merge feature/$name",
+      "git rebase main",
       "mr-featrue:$name"
     ],
     "mr-featrue:$name": [
-      "git fetch -p origin",
-      "git switch main",
-      "git pull --rebase origin main",
-      "git switch develop",
-      "git rebase main",
+      "sync",
       "git switch feature/$name",
-      "git rebase develop",
+      "git rebase main",
       "gh pr create -f --base main",
       "git branch"
-    ],
-    "mr": [
-      "git fetch -p origin",
-      "git switch develop",
-      "git add -A",
-      "git cz --allow-empty",
-      "git switch main",
-      "git pull --rebase origin main",
-      "git switch develop",
-      "git rebase main",
-      "gh pr create -f --base main"
     ],
     "hotfix:$name": [
       "git switch main",
@@ -109,14 +83,10 @@
       "verify-feature$name"
     ],
     "verify-feature$name": [
-      "git add -A",
-      "git cz --allow-empty",
       "git switch main",
       "git pull --rebase origin main",
-      "git switch develop",
-      "git rebase main",
       "git switch feature/$name",
-      "git rebase develop",
+      "git rebase main",
       "git push -f origin $(git branch --show-current)"
     ],
     "vh:$name": [
