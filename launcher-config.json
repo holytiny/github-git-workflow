@@ -23,7 +23,7 @@
     "df:$name": "delete-feature:$name",
     "delete-feature:$name": [
       "sync",
-      "git branch -d feature/$name",
+      "git branch -D feature/$name",
       "git branch"
     ],
     "ff:$name": "finish-feature:$name",
