@@ -23,10 +23,16 @@
       "git switch feature/$name",
       "git branch"
     ],
-    "df:$name": "delete-feature:$name",
-    "delete-feature:$name": [
-      "sync",
-      "git branch -D feature/$name",
+    "vf:$name": [
+      "verify-feature:$name"
+    ],
+    "verify-feature:$name": [
+      "git switch main",
+      "git pull --rebase origin main",
+      "git switch feature/$name",
+      "git rebase main",
+      "git pull --rebase origin feature/$name",
+      "git push origin $(git branch --show-current)",
       "git branch"
     ],
     "ff:$name": "finish-feature:$name",
@@ -43,6 +49,12 @@
       "gh pr create -f --base main",
       "git branch"
     ],
+    "df:$name": "delete-feature:$name",
+    "delete-feature:$name": [
+      "sync",
+      "git branch -D feature/$name",
+      "git branch"
+    ],    
     "hotfix:$issue:$version": [
       "git switch main",
       "git pull --rebase origin main",
@@ -71,18 +83,6 @@
       "git switch hotfix/$name",
       "git rebase main",
       "gh pr create -f --base main",
-      "git branch"
-    ],
-    "vf:$name": [
-      "verify-feature:$name"
-    ],
-    "verify-feature:$name": [
-      "git switch main",
-      "git pull --rebase origin main",
-      "git switch feature/$name",
-      "git rebase main",
-      "git pull --rebase origin feature/$name",
-      "git push origin $(git branch --show-current)",
       "git branch"
     ],
     "vh:$name": [
