@@ -1,5 +1,12 @@
 # Git Work Flow for Github
 
+- [Motivation](#motivation)
+- [Install](#install)
+- [Usage](#usage)
+  - [Create](#create)
+  - [Finish](#finish)
+  - [Delete](#delete)
+
 ## Motivation
 
 Sometimes we will find that we need to execute lots of git command to make a pull request. For example, if we need to make a pull request to merge feature/fa branch, we need to do:
@@ -33,13 +40,13 @@ Firstly, install [gh](https://github.com/cli/cli), and make sure you have [logge
 
 Secondly, install script-launcher.
 
-```
+```shell
 npm install script-launcher -D
 ```
 
 Then add `start: launch` to the `package.json` scripts section:
 
-```
+```json
 {
     ...
     "scripts": {
@@ -68,12 +75,55 @@ The life cyle of branches are `create, finish and delete`.
 
 ### Create
 
-```
-feature:branch-name
+```shell
+feature:name
 ```
 
-examples:
+example:
 
-```
+Create a feature topic branch named doc
+
+```shell
 npm start feature:doc
+```
+
+Then a new branch named `doc` should be created.
+
+```shell
+* feature/doc
+  main
+```
+
+### Finish
+
+```shell
+finish-feature:name
+# or for short
+ff:name
+```
+
+After all development and test, we can use finish command to creat the pull request
+
+```shell
+npm start finish-feature:doc
+# or for short
+npm start ff:doc
+```
+
+The command should create a pull request.
+
+### Delete
+
+```shell
+delete-feature:name
+# or for short
+df:name
+```
+
+After the pull request is approved, we can use delete-feature command to delete the topic branch.
+
+```shell
+npm start delete-feature:doc
+# or for short
+npm start df:doc
 ```
