@@ -82,7 +82,8 @@
       "git switch feature/$name",
       "git rebase main",
       "git pull --rebase origin feature/$name",
-      "git push origin $(git branch --show-current)"
+      "git push origin $(git branch --show-current)",
+      "git branch"
     ],
     "vh:$name": [
       "verify-hotfix:$name"
