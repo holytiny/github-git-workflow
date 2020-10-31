@@ -43,7 +43,7 @@
       "gh pr create -f --base main",
       "git branch"
     ],
-    "hotfix:$name": [
+    "hotfix:$issue:$version": [
       "git switch main",
       "git pull --rebase origin main",
       "git branch hotfix/$name main",
@@ -73,24 +73,16 @@
       "gh pr create -f --base main",
       "git branch"
     ],
-    "verify": [
-      "git add -A",
-      "git cz --allow-empty",
-      "git switch main",
-      "git pull --rebase origin main",
-      "git switch develop",
-      "git rebase main",
-      "git push -f origin $(git branch --show-current)"
-    ],
     "vf:$name": [
-      "verify-feature$name"
+      "verify-feature:$name"
     ],
-    "verify-feature$name": [
+    "verify-feature:$name": [
       "git switch main",
       "git pull --rebase origin main",
       "git switch feature/$name",
       "git rebase main",
-      "git push -f origin $(git branch --show-current)"
+      "git pull --rebase origin feature/$name",
+      "git push origin $(git branch --show-current)"
     ],
     "vh:$name": [
       "verify-hotfix:$name"
