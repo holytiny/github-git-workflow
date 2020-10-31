@@ -85,8 +85,6 @@
     "dh:$name": "delete-hotfix:$name",
     "delete-hotfix:$name": [
       "sync",
-      "git merge hotfix/$name",
-      "git push",
       "git switch hotfix/$name",
       "npm version patch",
       "git switch main",
