@@ -58,7 +58,7 @@
     "hotfix:$issue:$version": [
       "git switch main",
       "git pull --rebase origin main",
-      "git switch -c $issue $version",
+      "git switch -c hotfix/$issue $version",
       "git branch"
     ],
     "vh:$name": [
