@@ -3,6 +3,7 @@
 - [Motivation](#motivation)
 - [Install](#install)
 - [Usage](#usage)
+- [Feature Branch](#feature-branch)
   - [Create](#create)
   - [Finish](#finish)
   - [Delete](#delete)
@@ -79,8 +80,6 @@ The life cyle of branches are `create, finish and delete`.
 feature:name
 ```
 
-example:
-
 Create a feature topic branch named doc
 
 ```shell
@@ -102,7 +101,7 @@ finish-feature:name
 ff:name
 ```
 
-After all development and test, we can use finish command to creat the pull request
+After all development and test, we can use finish command to creat the pull request.
 
 ```shell
 npm start finish-feature:doc
