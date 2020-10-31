@@ -68,9 +68,9 @@ The life cyle of branches are `create, finish and delete`.
 
 **create**: create the topic branch
 
-**finish**: create the pull request from the topic branch
+**finish**: create the pull request from the topic branch, use this command to avoid potential conflicts
 
-**verify**: if something wrong for pull request, use verify to push local fix to remote topic branch
+**verify**: if something wrong for pull request, after serveral commits you may fix the issue, then use verify to push local fix to remote topic branch to avoid potential conflicts
 
 **delete**: after pull request is merged to main branch, delete the local topic branch
 
