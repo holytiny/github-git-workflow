@@ -85,12 +85,7 @@
     "dh:$name": "delete-hotfix:$name",
     "delete-hotfix:$name": [
       "sync",
-      "git switch hotfix/$name",
-      "npm version patch",
-      "git switch main",
-      "git merge hotfix/$name",
-      "git push",
-      "git branch -d hotfix/$name",      
+      "git branch -D hotfix/$name",      
       "git branch"
     ],
     "premajor": "version:premajor",
