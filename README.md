@@ -113,6 +113,22 @@ npm start ff:doc
 
 The command should create a pull request.
 
+### Verify
+
+```shell
+verify-feature:name
+# or for short
+vf:name
+```
+
+If there's someting wrong with the pull request, and we fix the problem in local branch after several commits, then we can use verify command to push these commits to the remote branch of this pull request.
+
+```shell
+npm start verify-feature:doc
+# or for short
+npm start vf:doc
+```
+
 ### Delete
 
 ```shell
