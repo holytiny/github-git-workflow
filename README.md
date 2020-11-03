@@ -4,9 +4,7 @@
 - [Install](#install)
 - [Usage](#usage)
 - [Feature Branch](#feature-branch)
-  - [Create](#create)
-  - [Finish](#finish)
-  - [Delete](#delete)
+- [Hotfix Branch](#hotfix-branch)
 
 ## Motivation
 
@@ -76,6 +74,8 @@ The life cyle of branches are `create, finish and delete`.
 
 ## Feature Branch
 
+Feature branch is operated using rebase as much as possible to solve potential conflicts in local topic branch before the pull request.
+
 ### Create
 
 ```shell
@@ -88,7 +88,7 @@ Create a feature topic branch named doc
 npm start feature:doc
 ```
 
-Then a new branch named `doc` should be created.
+Then a new branch named `feature/doc` should be created.
 
 ```shell
 * feature/doc
@@ -143,4 +143,69 @@ After the pull request is approved, we can use delete-feature command to delete 
 npm start delete-feature:doc
 # or for short
 npm start df:doc
+```
+
+## Hotfix Branch
+
+Hotfix branch is used to fix issues in released version. It doesn't use rebase, conflicts are solved in pull request.
+
+### Create
+
+```shell
+hotfix:name:version
+```
+
+This command create a branch named `hotfix/name` from the specific `version` tag, the `version` is a git version tag.
+
+```shell
+npm start hotfix:doc:v1.0.1
+```
+
+After the command, a branch named hotfix/doc is created.
+
+```shell
+* hotfix/doc
+  main
+```
+
+### Finish
+
+```shell
+finish-hotfix:name
+# or fh for short
+fh:name
+```
+
+This command create a pull request from the topic branch.
+
+```shell
+npm start fh:doc
+```
+
+### Verify
+
+```shell
+verify-hotfix:name
+# or vf for short
+vf:name
+```
+
+The same as verify-feature, however, it doesn't rebase the topic branch from main branch.
+
+```shell
+npm start vf:doc
+```
+
+### Delete
+
+```shell
+delete-hotfix:name
+# or dh for short
+dh:name
+```
+
+The same as delete-feature, to delete the hotfix branch after the pull request is approved.
+
+```shell
+npm start dh:doc
 ```

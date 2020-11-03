@@ -55,10 +55,10 @@
       "git branch -D feature/$name",
       "git branch"
     ],
-    "hotfix:$issue:$version": [
+    "hotfix:$name:$version": [
       "git switch main",
       "git pull --rebase origin main",
-      "git switch -c hotfix/$issue $version",
+      "git switch -c hotfix/$name $version",
       "git branch"
     ],
     "vh:$name": [
