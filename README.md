@@ -5,6 +5,7 @@
 - [Usage](#usage)
 - [Feature Branch](#feature-branch)
 - [Hotfix Branch](#hotfix-branch)
+- [Version](#version)
 
 ## Motivation
 
@@ -69,6 +70,8 @@ The life cyle of branches are `create, finish and delete`.
 **finish**: create the pull request from the topic branch, use this command to avoid potential conflicts
 
 **verify**: if something wrong for pull request, after serveral commits you may fix the issue, then use verify to push local fix to remote topic branch to avoid potential conflicts
+
+**version**: version command is used in main branch, after the pull request is approved, version command can be used to add version tag to the main branch.
 
 **delete**: after pull request is merged to main branch, delete the local topic branch
 
@@ -208,4 +211,64 @@ The same as delete-feature, to delete the hotfix branch after the pull request i
 
 ```shell
 npm start dh:doc
+```
+
+## Version
+
+Version command uses npm version to add tag go main branch.
+
+If the version before executing the command is v1.0.0
+
+```shell
+npm start prepatch
+# v1.0.1-0
+```
+
+```shell
+npm start patch
+# v1.0.1
+```
+
+```shell
+npm start preminor
+# v1.1.1-0
+```
+
+```shell
+npm start minor
+# v1.1.1
+```
+
+```shell
+npm start premajor
+# v2.1.1-0
+# The recommand way is to use alpha or beta command rather than premajor
+```
+
+```shell
+npm start major
+# v2.1.1
+```
+
+```shell
+npm start alpha
+# v2.1.1-alpha.0
+```
+
+```shell
+npm start beta
+# v2.1.1-beta.0
+```
+
+```shell
+# or specify the preid
+npm start prerelease:omega
+# v2.1.1-omega.0
+```
+
+```shell
+# or specify the version
+# npm start version:semver
+npm start version:2.2.0
+# v2.2.0
 ```
