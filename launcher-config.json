@@ -37,9 +37,9 @@
       "sync",
       "git switch feature/$name",
       "git rebase main",
-      "mr-featrue:$name"
+      "mr-feature:$name"
     ],
-    "mr-featrue:$name": [
+    "mr-feature:$name": [
       "sync",
       "git switch feature/$name",
       "git rebase main",
